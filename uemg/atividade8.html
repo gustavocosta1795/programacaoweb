@@ -14,17 +14,19 @@
 <body>
     <script>
 
-// Ler o custo de fabrica de um carro e exibir o custo consumidor       
-        var custfab = Number(window.prompt("Digite o custo de fabricação do veículo:"))
-        
+// Ler 5 valores inteiros     
+        var n1 = Number(window.prompt("Digite o primeiro número:"))
+        var n2 = Number(window.prompt("Digite segundo número"))
+        var n3 = Number(window.prompt("Digite terceiro número"))
+        var n4 = Number(window.prompt("Digite o primeiro número:"))
+        var n5 = Number(window.prompt("Digite segundo número"))
 
-// Fazer o acréscimo dos custos de distibuição e impostos(sobre fabricação) sendo eles e 28% e 45%
+// Exibir quantos são pares, impares, positivos e negativos
 
         var dist = custfab * 0.28
         var imp = custfab *0.45
         var vf = custfab + dist + imp
       
-//        Exemplo: 685 convertido à 00:11:25
 // exibindo resultados        
         document.write(`O valor final do veículo é: ${vf}`)
  
