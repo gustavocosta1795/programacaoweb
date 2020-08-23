@@ -12,31 +12,49 @@
     </style>
 </head>
 <body>
+ Digite 5 Números<br/>
+<input type="text">
+<input type="text">
+<input type="text">
+<input type="text">
+<input type="text">
+<button onclick="cinco([1,2,3,4,5])">Enviar</button>
+
+
     <script>
+//Functions para ver quantos numeros são de cada categoria
 
-// Ler 5 valores inteiros     
-        var n1 = Number(window.prompt("Digite o primeiro número:"))
-        var n2 = Number(window.prompt("Digite segundo número"))
-        var n3 = Number(window.prompt("Digite terceiro número"))
-        var n4 = Number(window.prompt("Digite o primeiro número:"))
-        var n5 = Number(window.prompt("Digite segundo número"))
+function cinco(arr){
+    var countPares = 0;
+    var countImpares = 0;
+    var countPositivos = 0;
+    var countNegativos = 0;
+    for (let index = 0; index < arr.length; index++){
+        
 
-// Exibir quantos são pares, impares, positivos e negativos
-
-        var par =
-      
-// exibindo resultados        
-        document.write(`São:<br/>${par} Pares <br/>${impar} Impares <br/>${pos} Positivos <br/>${neg} negativos <br/>`)
+        if((arr[index] % 2) == 0){//se o array arr que se encontra em index dividido por 2 tiver resto = 0 adicionar 1 na contagem count pares
+            countPares++;
+        }else{//senão for par contar como impar
+            countImpares++;
+        }
+        if(arr[index] >= 0){//se o array arr que se encontra em index for maior ou igual a 0 adicionar 1 na contagem count positivos
+            countPositivos++;
+        }else{//senão adicionar um na contagem count negativos
+            countNegativos++
+        }
  
+ 
+    }
+   // exibindo resultados
+        document.write(`São:<br/>${countPares} Pares <br/>${countImpares} Impares <br/>${countPositivos} Positivos <br/>${countNegativos} negativos <br/>`)
+
+        //console.log(countPares,"valores pares");
+}
+      
+        
 
     </script>
-</body>
-</html>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atividade8</title>
-</head>
-<body>
+
     
 </body>
 </html>
