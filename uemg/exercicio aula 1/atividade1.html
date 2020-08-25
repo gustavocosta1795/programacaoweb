@@ -21,15 +21,15 @@
         
 // distancia entre os pontos D= √(x2-x1)²+(y2-y1)²
 function operacao(px1,py1,px2,py2){
-    return Math.sqrt(MAth.pow(px2-px1,2) + MAth.pow(py2-py1,2),2);
-
+    //return Math.sqrt((Math.pow(px2-px1,2)) + (Math.pow(py2-py1,2)));
+    var dist = (px2-px1) ** 2
+    var dist1 = (py2-py1) ** 2
+    var dist2 = dist + dist1
+    var dist3 = dist2 ** (1/2)
 }
+let res = operacao()
         
-        
-//        var dist = (px2-px1) ** 2
-//        var dist1 = (py2-py1) ** 2
- //       var dist2 = dist + dist1
- //       var dist3 = dist2 ** (1/2)
+      
          
 // aplicando resultados       
         document.write(`P X1 é ${px1}, P Y1 é ${py1}, P X2 é ${px2}, P Y2 é ${py2} <br/>`)
