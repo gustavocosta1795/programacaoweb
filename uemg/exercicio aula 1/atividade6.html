@@ -15,28 +15,27 @@
     <script>
 
 // Ler tempo de duração de um evento        
-        var seg = Number(window.prompt("Digite o tempo de duração em segundos:"))
+        var secs = Number(window.prompt("Digite o tempo de duração em segundos:"))
         
 
 // Fazer o resultado em horas minutos e segundos
 
-        var horas = Math.floor(seg/(60*60));
-
-        var resto = seg % (60*60);
-        var minutos = Math.floor(seg/60);
-
-        resto %= 60;
-        segundos = Math.ceil(resto);
 
 
+function pad(num) {
+    return ("0"+num).slice(-2);
+}
+function hhmmss(secs) {
+  var minutes = Math.floor(secs / 60);
+  secs = secs%60;
+  var hours = Math.floor(minutes/60)
+  minutes = minutes%60;
+  return `${pad(hours)}:${pad(minutes)}:${pad(secs)}`;
+  // return pad(hours)+":"+pad(minutes)+":"+pad(secs); for old browsers
+}
+let res = hhmmss(secs)
+    document.write(`O tempo de duração do evento é: ${res}`)
 
-      
-//        Exemplo: 685 convertido à 00:11:25
-// exibindo resultados        
-        document.write(`A média anual deste aluno é: ${horas}:${minutos}:${segundos}`)
- 
-       
-    
 
     </script>
 </body>

@@ -21,15 +21,20 @@
 
 // Fazer a média final ponderada sendo pesos 2, 3 , 5
 // Média ponderada = (nota*peso + nota*peso) / soma dos pesos
-
+function operacao(a,b,c){
+    return ((a*2)+(b*3)+(c*5))/10
+/*
         var n1 = a*2
         var n2 = b*3
         var n3 = c*5
         var media = (n1+n2+n3)/10
+*/
+}
+let res = operacao(a,b,c)
 
 // exibindo resultados        
-        document.write(`A média anual deste aluno é: ${media}`)
- 
+//        document.write(`A média anual deste aluno é: ${media}`)
+        document.write(`A média anual deste aluno é: ${res}`) 
        
     
 

@@ -18,14 +18,18 @@
         var c = Number(window.prompt("Digite terceiro número"))
 
 // D=R+S/2 onde R=(A+B)²  e  S=(B+C)²
-
-        var r = (a+b) ** 2
+function operacao(a,b,c){
+    return ((Math.pow(a+b,2)) + (Math.pow(b+c,2)))/2
+    /*  var r = (a+b) ** 2
         var s = (b+c) ** 2
         var d = (r+s)/2 
+*/
+}
+let res = operacao(a,b,c)
 
 // exibindo resultados        
-        document.write(`r é: ${r}, s é ${s} <br/>O resultado é ${d}`)
- 
+//        document.write(`r é: ${r}, s é ${s} <br/>O resultado é ${d}`)
+        document.write(`O resultado é ${res}`) 
        
 
 

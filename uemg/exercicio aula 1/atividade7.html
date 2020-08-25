@@ -19,13 +19,18 @@
         
 
 // Fazer o acréscimo dos custos de distibuição e impostos(sobre fabricação) sendo eles e 28% e 45%
+function operacao(custfab){
+    return (custfab*0,28)+(custfab*0.45)+custfab
+//        var dist = custfab * 0.28
+//        var imp = custfab *0.45
+//        var vf = custfab + dist + imp
 
-        var dist = custfab * 0.28
-        var imp = custfab *0.45
-        var vf = custfab + dist + imp
+}
+let res = operacao(custfab)
+
         
 // exibindo resultados        
-        document.write(`O valor final do veículo é: ${vf}`)
+        document.write(`O valor final do veículo é: ${res}`)
  
 
     </script>
