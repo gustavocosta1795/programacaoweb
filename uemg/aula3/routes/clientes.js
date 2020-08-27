@@ -38,15 +38,24 @@ router.get('/clientes', (req, res) => {
 });
 
 
-router.get('/clientes/:id_clientes', (req, res) => {
-    console.log(req.params.id_cliente)
-    var dadosFake = {
-      status: 'ok',
-      dados : [
-          {id_cliente: 1, nome_cliente: "André", sobrenome_cliente: "Rabelo"},
-      ]
-    }
-    
-      res.send(dadosFake);
+router.get('/clientes/:id_cliente', (req, res) => {
+    var sql = 'select * from clientes where id_cliente = ' + req.params.id_cliente
+    conexao.query(sql, (erro,resultado) => {
+        var resposta = {
+            status : '',
+            dados : []
+        }
+        if(erro){
+            resposta.status = 'erro'
+            resposta.dados = erro
+          //  console.log(erro)
+            resposta.send(resposta)
+        }else{
+          //  console.log(resultado)
+          resposta.status = 'ok'
+          resposta.dados = resultado
+            res.send(resposta);
+        }
+    })
   });
 module.exports = router;
