@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<scri>, initial-scale=1.0">
+    <title>Atividade6</title>
+    <style>
+        body {
+            font: normal 20pt Arial;
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+
+// Ler tempo de duração de um evento        
+        var secs = Number(window.prompt("Digite o tempo de duração em segundos:"))
+        
+
+// Fazer o resultado em horas minutos e segundos
+
+
+
+const pad = (num) => {
+    return ("0"+num).slice(-2);
+}
+const hhmmss = (secs) => {
+  var minutes = Math.floor(secs / 60);
+  secs = secs%60;
+  var hours = Math.floor(minutes/60)
+  minutes = minutes%60;
+  return `${pad(hours)}:${pad(minutes)}:${pad(secs)}`;
+  // return pad(hours)+":"+pad(minutes)+":"+pad(secs); for old browsers
+}
+let res = hhmmss(secs)
+    document.write(`O tempo de duração do evento é: ${res}`)
+
+
+    </script>
+</body>
+</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade6</title>
+</head>
+<body>
+    
+</body>
+</html>

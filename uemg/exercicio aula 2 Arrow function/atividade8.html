@@ -27,7 +27,7 @@
         
 //Functions para ver quantos numeros são de cada categoria
 
-function cinco(){
+const cinco = () => {
     
     var n1 = window.document.getElementById('n1').value
     var n2 = window.document.getElementById('n2').value
@@ -48,7 +48,7 @@ function cinco(){
         }else{//senão for par contar como impar
             countImpares++;
         }
-        if(arr[index] > 0){//se o array arr que se encontra em index for maior ou igual a 0 adicionar 1 na contagem count positivos
+        if(arr[index] > 0){//se o array arr que se encontra em index for maior que 0 adicionar 1 na contagem count positivos
             countPositivos++;
         }else{//senão adicionar um na contagem count negativos
             countNegativos++
@@ -59,10 +59,8 @@ function cinco(){
    // exibindo resultados
         document.write(`São:<br/>${countPares} Pares <br/>${countImpares} Impares <br/>${countPositivos} Positivos <br/>${countNegativos} negativos <br/>`)
 
-        //console.log(countPares,"valores pares");
 }
       
- //       document.write(`São:<br/>${countPares} Pares <br/>${countImpares} Impares <br/>${countPositivos} Positivos <br/>${countNegativos} negativos <br/>`)
 
     </script>
 
