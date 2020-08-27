@@ -3,5 +3,8 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '6bw6000',
-  database : 'my_db'
+  database : 'aulas_uemg'
 });
+
+
+module.exports = connection
