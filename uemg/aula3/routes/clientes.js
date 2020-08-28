@@ -1,61 +1,106 @@
 var express = require('express');
 var router = express.Router();
-var conexao = require('../bin/bancodedados')
+var conexao = require('../bin/bancodados')
 
-/* GET users listing. */
+//ROTA PARA RECUPERAR ALL
 router.get('/clientes', (req, res) => {
-
-
-//   var dadosFake = {
-//     status: 'ok',
-//     dados : [
-//         {id_cliente: 1, nome_cliente: "André", sobrenome_cliente: "Rabelo"},
-//         {id_cliente: 2, nome_cliente: "Eduardo", sobrenome_cliente: "Pereira"}
-//     ]
-//   }
-
-    var sql = 'select * from clientes'
-    conexao.query(sql, (erro,resultado) => {
-        var resposta = {
-            status : '',
-            dados : []
+    var resposta = {
+        status : 'ok',
+        dados : []
+    }
+    var sql = "select * from clientes"
+    conexao.query(sql, (erro, resultado) => {
+        if(erro){
+            resposta.status = 'erro'
+            resposta.dado = erro
+            res.send(resposta)
+        } else {
+            resposta.status = 'ok'
+            resposta.dados = resultado
+            res.send(resposta)
         }
+    })
+});
+//ROTA PARA RECUPERAR UM REGISTRO APENAS
+router.get('/clientes/:id', (req, res) => {
+    var resposta = {
+        status : 'ok',
+        dados : []
+    }
+    var sql = "select * from clientes where id_cliente = " + req.params.id 
+    conexao.query(sql, (erro, resultado) => {
         if(erro){
             resposta.status = 'erro'
             resposta.dados = erro
-          //  console.log(erro)
-            resposta.send(resposta)
-        }else{
-          //  console.log(resultado)
-          resposta.status = 'ok'
-          resposta.dados = resultado
-            res.send(resposta);
+            res.send(resposta)
+        } else {
+            resposta.status = 'ok'
+            resposta.dados = resultado
+            res.send(resposta)
         }
     })
-
-  
-
 });
 
-
-router.get('/clientes/:id_cliente', (req, res) => {
-    var sql = 'select * from clientes where id_cliente = ' + req.params.id_cliente
-    conexao.query(sql, (erro,resultado) => {
-        var resposta = {
-            status : '',
-            dados : []
-        }
+router.post('/clientes',(req, res) => {
+    var nome_cliente = req.body.nome_cliente
+    var sobrenome_cliente = req.body.sobrenome_cliente
+    var resposta = {
+        status : '',
+        dados : undefined
+    }
+    var sql = `insert into clientes(nome_cliente, sobrenome_cliente) values ("${nome_cliente}", "${sobrenome_cliente}")`
+    conexao.query(sql, (erro, resultado) => {
         if(erro){
             resposta.status = 'erro'
             resposta.dados = erro
-          //  console.log(erro)
-            resposta.send(resposta)
-        }else{
-          //  console.log(resultado)
-          resposta.status = 'ok'
-          resposta.dados = resultado
-            res.send(resposta);
+            res.send(resposta)
+        } else {
+            resposta.status = 'ok'
+            resposta.dados = resultado
+            res.send(resposta)
         }
     })
-  });
+})
+
+router.patch('/clientes/:id',(req, res) => {
+    var id_cliente = req.params.id
+    var nome_cliente = req.body.nome_cliente
+    var sobrenome_cliente = req.body.sobrenome_cliente
+    var resposta = {
+        status : '',
+        dados : undefined
+    }
+    var sql = `update clientes set nome_cliente = "${nome_cliente}", sobrenome_cliente = "${sobrenome_cliente}" where id_cliente = ${id_cliente}`
+    conexao.query(sql, (erro, resultado) => {
+        if(erro){
+            resposta.status = 'erro'
+            resposta.dados = erro
+            res.send(resposta)
+        } else {
+            resposta.status = 'ok'
+            resposta.dados = resultado
+            res.send(resposta)
+        }
+    })
+})
+router.delete('/clientes/:id',(req, res) => {
+    var id_cliente = req.params.id
+    var resposta = {
+        status : '',
+        dados : undefined
+    }
+    var sql = `delete from clientes where id_cliente = ${id_cliente}`
+    conexao.query(sql, (erro, resultado) => {
+        if(erro){
+            resposta.status = 'erro'
+            resposta.dados = erro
+            res.send(resposta)
+        } else {
+            resposta.status = 'ok'
+            resposta.dados = resultado
+            res.send(resposta)
+        }
+    })
+})
+
 module.exports = router;
