@@ -70,7 +70,7 @@ router.patch('/fornecedor/:id',(req, res) => {
         status : '',
         dados : undefined
     }
-    var sql = `update clientes set nome_fornecedor = "${nome_fornecedor}", cnpj = "${cnpj}" where idfornecedor = ${idfornecedor}`
+    var sql = `update fornecedor set nome_fornecedor = "${nome_fornecedor}", cnpj = "${cnpj}" where idfornecedor = ${idfornecedor}`
     conexao.query(sql, (erro, resultado) => {
         if(erro){
             resposta.status = 'erro'
