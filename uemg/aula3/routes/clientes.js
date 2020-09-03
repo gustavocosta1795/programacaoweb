@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var conexao = require('../bin/bancodados')
+var conexao = require('../bin/bancodedados')
 
 //ROTA PARA RECUPERAR ALL
 router.get('/clientes', (req, res) => {
