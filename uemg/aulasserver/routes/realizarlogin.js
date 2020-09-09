@@ -3,12 +3,12 @@ var router = express.Router();
 var conexao = require('../bin/bancodedados')
 
 //ROTA PARA RECUPERAR ALL
-router.get('/aluno', (req, res) => {
+router.get('/realizarlogin', (req, res) => {
     var resposta = {
         status : 'ok',
         dados : []
     }
-    var sql = "select * from aluno"
+    var sql = "select * from login"
     conexao.query(sql, (erro, resultado) => {
         if(erro){
             resposta.status = 'erro'
@@ -21,13 +21,15 @@ router.get('/aluno', (req, res) => {
         }
     })
 });
-//ROTA PARA RECUPERAR UM REGISTRO APENAS
-router.get('/aluno/:id', (req, res) => {
+
+
+//rota para capturar um registro
+router.get('/realizarlogin/:id', (req, res) => {
     var resposta = {
         status : 'ok',
         dados : []
     }
-    var sql = "select * from aluno where idaluno = " + req.params.id 
+    var sql = "select * from login where idlogin = " + req.params.id 
     conexao.query(sql, (erro, resultado) => {
         if(erro){
             resposta.status = 'erro'
@@ -41,17 +43,48 @@ router.get('/aluno/:id', (req, res) => {
     })
 });
 
-router.post('/aluno',(req, res) => {
-    var nome = req.body.nome
-    var email = req.body.email
-    var telefone = req.body.telefone
-    var turma_idturma = req.body.turma_idturma
+
+
+//rota para inserir um registro
+router.post('/realizarlogin',(req, res) => {
+    var login = req.body.login
+    var senha = req.body.senha
+    
+   
    
     var resposta = {
         status : '',
         dados : undefined
     }
-    var sql = `insert into aluno(nome, email, telefone, turma_idturma) values ("${nome}", "${email}", "${telefone}", "${turma_idturma}")`
+    var sql = `select * from login where login = '${login}' and senha = '${senha}')`
+    conexao.query(sql, (erro, resultado) => {
+        if(erro){
+            resposta.status = 'erro'
+            resposta.dados = erro
+            res.send(resposta)
+        } else {
+            resposta.status = 'Login e senha ok'
+            resposta.dados = resultado
+            res.send(resposta)
+        }
+    })
+})
+
+
+//rota para atualizar um registro
+router.patch('/realizarlogin/:id',(req, res) => {
+    var idlogin = req.params.id
+    var login = req.body.login
+    var senha = req.body.senha
+    var nome = req.body.nome
+    var sobrenome = req.body.sobrenome
+   
+   
+    var resposta = {
+        status : '',
+        dados : undefined
+    }
+    var sql = `update aluno set login = "${login}", senha = "${senha}", nome = "${nome}", sobrenome = "${sobrenome}" where idlogin = ${idlogin}`
     conexao.query(sql, (erro, resultado) => {
         if(erro){
             resposta.status = 'erro'
@@ -65,37 +98,15 @@ router.post('/aluno',(req, res) => {
     })
 })
 
-router.patch('/aluno/:id',(req, res) => {
-    var idaluno = req.params.id
-    var nome = req.body.nome
-    var email = req.body.email
-    var telefone = req.body.telefone
-    var turma_idturma = req.body.turma_idturma
-   
+
+//rota para deletar um registro
+router.delete('/realizarlogin/:id',(req, res) => {
+    var idlogin = req.params.id
     var resposta = {
         status : '',
         dados : undefined
     }
-    var sql = `update aluno set nome = "${nome}", email = "${email}", telefone = "${telefone}", turma_idturma = "${turma_idturma}" where idaluno = ${idaluno}`
-    conexao.query(sql, (erro, resultado) => {
-        if(erro){
-            resposta.status = 'erro'
-            resposta.dados = erro
-            res.send(resposta)
-        } else {
-            resposta.status = 'ok'
-            resposta.dados = resultado
-            res.send(resposta)
-        }
-    })
-})
-router.delete('/aluno/:id',(req, res) => {
-    var idaluno = req.params.id
-    var resposta = {
-        status : '',
-        dados : undefined
-    }
-    var sql = `delete from aluno where idaluno = ${idaluno}`
+    var sql = `delete from aluno where idlogin = ${idlogin}`
     conexao.query(sql, (erro, resultado) => {
         if(erro){
             resposta.status = 'erro'
