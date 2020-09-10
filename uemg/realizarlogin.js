@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var conexao = require('../bin/bancodedados')
 
-// buscar todas as linhas
-
+//ROTA PARA RECUPERAR ALL
 router.get('/realizarlogin', (req, res) => {
     var resposta = {
         status : 'ok',
@@ -23,8 +22,8 @@ router.get('/realizarlogin', (req, res) => {
     })
 });
 
-//buscar uma linha pelo id
 
+//rota para capturar um registro
 router.get('/realizarlogin/:id', (req, res) => {
     var resposta = {
         status : 'ok',
@@ -43,8 +42,10 @@ router.get('/realizarlogin/:id', (req, res) => {
         }
     })
 });
-// comparar se o login e senha estão certos
 
+
+
+//rota para inserir um registro
 router.post('/realizarlogin',(req, res) => {
     var login = req.body.login
     var senha = req.body.senha
@@ -70,7 +71,7 @@ router.post('/realizarlogin',(req, res) => {
     })
 })
 
-// dar update em uma linha
+
 router.patch('/realizarlogin/:id',(req, res) => {
     var idlogin = req.params.id
     var login = req.body.login
@@ -83,7 +84,7 @@ router.patch('/realizarlogin/:id',(req, res) => {
         status : '',
         dados : undefined
     }
-    var sql = `update aluno set login = "${login}", senha = "${senha}", nome = "${nome}", sobrenome = "${sobrenome}" where idlogin = ${idlogin}`
+    var sql = `update login set login = "${login}", senha = "${senha}", nome = "${nome}", sobrenome = "${sobrenome}" where idlogin = ${idlogin}`
     conexao.query(sql, (erro, resultado) => {
         if(erro){
             resposta.status = 'erro'
@@ -96,8 +97,6 @@ router.patch('/realizarlogin/:id',(req, res) => {
         }
     })
 })
-
-//deletar uma informação pela id
 router.delete('/realizarlogin/:id',(req, res) => {
     var idlogin = req.params.id
     var resposta = {
